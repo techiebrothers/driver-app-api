@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "username": "postgres",
+    "password": "postgres",
+    "host": "127.0.0.1",
+    "port": "5432",
+    "database": "driverapp"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "postgres",
+    "host": "driverapp.cvocn8upo7os.us-east-2.rds.amazonaws.com",
+    "port": "5432",
+    "database": "driverapp"
+  },
+  "prod": {
+    "username": "",
+    "password": "",
+    "host": "",
+    "port": "",
+    "database": ""
+  }
+}

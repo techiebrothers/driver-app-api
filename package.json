@@ -1,0 +1,44 @@
+{
+  "name": "DriverAPI",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.mjs",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config server.mjs",
+    "kill":"sudo lsof -t -i tcp:9000 | xargs kill -9"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "joi": "^17.4.0",
+    "method-override": "^3.0.0",
+    "module-alias": "^2.2.2",
+    "moment": "^2.29.1",
+    "moment-range": "^4.0.2",
+    "moment-round": "^1.0.1",
+    "moment-timezone": "^0.5.33",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.4",
+    "response-time": "^2.3.2",
+    "sequelize": "^6.6.4",
+    "sequelize-cli": "^6.2.0",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6",
+    "url": "^0.11.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.9"
+  }
+}
