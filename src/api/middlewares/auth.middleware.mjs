@@ -35,6 +35,7 @@ const authMiddleware = {
     console.log("..validate verify otp middleware..");
     const schema = Joi.object({
       otp: Joi.string().length(6).pattern(/^[0-9]+$/).required(),
+      mobile_number:Joi.string().length(10).pattern(/^[0-9]+$/).required(),
     });
     commonMiddleware.validateRequest(req, res, next, schema);
   }
