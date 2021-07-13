@@ -1,8 +1,8 @@
 import SQL from "sequelize";
 import DB from "./index.mjs";
 
-const User = DB.define(
-  "user",
+const Parking = DB.define(
+  "parking",
   {
     id: {
       type: SQL.INTEGER,
@@ -10,23 +10,18 @@ const User = DB.define(
       allowNull: false,
       primaryKey: true,
     },
-    name: {
+    address: {
       type: SQL.STRING,
       allowNull: false,
     },
-    mobileNumber: {
-      type: SQL.STRING,
-      allowNull: false,
-      unique:true
-    },
-    country: {
+    latitude:{
       type: SQL.STRING,
       allowNull: false,
     },
-    city: {
+    longitude:{
       type: SQL.STRING,
       allowNull: false,
-    },
+    }
   },
   {
     freezeTableName: true,
@@ -34,10 +29,10 @@ const User = DB.define(
   }
 );
 
-User.sync({ force: false })
-  .then(() => console.log("user table initialized"))
+Parking.sync({ force: false })
+  .then(() => console.log("parking table initialized"))
   .catch((error) => {
-    console.log("Error creating user table", error);
+    console.log("Error creating parking table", error);
   });
 
-export default User;
+export default Parking;

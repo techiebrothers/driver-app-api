@@ -18,7 +18,7 @@ const authMiddleware = {
     console.log("..validate signup middleware..");
     const schema = Joi.object({
       name: Joi.string().required(),
-      mobile_number: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
+      mobileNumber: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
       city: Joi.string().required(),
       country: Joi.string().required(),
     });
@@ -27,7 +27,7 @@ const authMiddleware = {
   validateSendOTP: (req, res, next) => {
     console.log("..validate send otp middleware..");
     const schema = Joi.object({
-      mobile_number: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
+      mobileNumber: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
     });
     commonMiddleware.validateRequest(req, res, next, schema);
   },
@@ -35,7 +35,7 @@ const authMiddleware = {
     console.log("..validate verify otp middleware..");
     const schema = Joi.object({
       otp: Joi.string().length(6).pattern(/^[0-9]+$/).required(),
-      mobile_number:Joi.string().length(10).pattern(/^[0-9]+$/).required(),
+      mobileNumber:Joi.string().length(10).pattern(/^[0-9]+$/).required(),
     });
     commonMiddleware.validateRequest(req, res, next, schema);
   }

@@ -23,16 +23,16 @@ const authController = {
       console.log("..signup controller..");
       const data = req.body;
       const response = await authService.signupService(data);
-      if (response && response !== 'FAIL') {
+      if (response?.success) {
         res.status(200).json({
           success: true,
-          data:response,
+          data: response.data,
           message: "User created successfully",
         });
       } else {
         res.status(500).json({
           success: false,
-          error: "Internal server error",
+          error: response.message,
         });
       }
     } catch (error) {
@@ -44,42 +44,40 @@ const authController = {
       });
     }
   },
-  sendOTP:(req,res,next)=>{
-    try{
-      console.log('...send otp controller..');
+  sendOTP: (req, res, next) => {
+    try {
+      console.log("...send otp controller..");
       // send otp function
       res.status(200).json({
-        success:true,
-        message:"OTP Sent successfully"
-      })
-    }
-    catch(error){
-      console.log('..send otp error..')
-      console.log(error)
+        success: true,
+        message: "OTP Sent successfully",
+      });
+    } catch (error) {
+      console.log("..send otp error..");
+      console.log(error);
       res.status(500).json({
-        success:false,
-        error:"Error while sending otp, please try again"
-      })
+        success: false,
+        error: "Error while sending otp, please try again",
+      });
     }
   },
-  verifyOTP:(req,res,next)=>{
-    try{
-      console.log('...verify otp controller..');
+  verifyOTP: (req, res, next) => {
+    try {
+      console.log("...verify otp controller..");
       // send otp function
       res.status(200).json({
-        success:true,
-        message:"OTP Verified successfully"
-      })
-    }
-    catch(error){
-      console.log('..verify otp error..')
-      console.log(error)
+        success: true,
+        message: "OTP Verified successfully",
+      });
+    } catch (error) {
+      console.log("..verify otp error..");
+      console.log(error);
       res.status(500).json({
-        success:false,
-        error:"Error while sending otp, please try again"
-      })
+        success: false,
+        error: "Error while sending otp, please try again",
+      });
     }
-  }
+  },
 };
 
 export default authController;

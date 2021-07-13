@@ -5,26 +5,31 @@ const authService = {
     let response = await UserModel.findOne({
       where: { name: "krunal" },
     });
-    console.log(response);
   },
   signupService: async (data) => {
-    console.log('..signup service..')
-    const { name, mobile_number, country, city } = data;
+    console.log("..signup service..");
+    const { name, mobileNumber, country, city } = data;
     const newUser = {
       name,
-      mobile_number,
+      mobileNumber,
       country,
       city,
     };
     try {
       let response = await UserModel.create(newUser);
       if (response) {
-        return response;
-      } else return "FAIL";
+        return {
+          success: true,
+          data: response,
+        };
+      } else return { success: false, message: "Internal server error" };
     } catch (error) {
-      console.log('..signup service error..')
-      console.log(error);
-      return "FAIL";
+      console.log("..signup service error..");
+      console.log(error.message);
+      return {
+        success: false,
+        message: error.message,
+      };
     }
   },
 };

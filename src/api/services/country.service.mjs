@@ -5,12 +5,12 @@ const countryService = {
     try {
       console.log("..country service ..");
       let response = await CountryModel.findAll();
-      if (response) return response;
-      else return "FAIL";
+      if (response) return { success: true, data: response };
+      else return { success: false, message: "Internal server error" };
     } catch (error) {
       console.log("..country service error..");
-      console.log(error);
-      return "FAIL";
+      console.log(error.message);
+      return { success: false, message: error.message };
     }
   },
 };

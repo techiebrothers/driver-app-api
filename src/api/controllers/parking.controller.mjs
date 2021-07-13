@@ -1,8 +1,8 @@
 const parkingController = {
-  parkingStatus: (req, res, next) => {
+  getAllParkings: (req, res, next) => {
     console.log("parking status controller");
   },
-  parkingSlots: (req, res, next) => {
+  getAvailableParkings: (req, res, next) => {
     console.log("parking slots controller");
   },
 };

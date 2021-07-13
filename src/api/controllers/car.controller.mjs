@@ -4,10 +4,10 @@ const carController = {
     try {
       console.log("..car controller..");
       let response = await carService.getAllCarService();
-      if (response && response !== "FAIL") {
+      if (response?.success) {
         res.status(200).json({
           success: true,
-          data: response,
+          data: response.data,
         });
       } else {
         res.status(500).json({

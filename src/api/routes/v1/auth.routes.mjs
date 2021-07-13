@@ -10,10 +10,10 @@ router
   .route("/signup")
   .post(authMiddleware.validateSignup, authController.signup);
 
-router.route("/send-otp")
+router.route("/otp/send")
 .post(authMiddleware.validateSendOTP,authController.sendOTP)
 
-router.route("/verify-otp")
+router.route("/otp/verify")
 .post(authMiddleware.validateVerifyOTP,authController.verifyOTP)
 
 export default router;

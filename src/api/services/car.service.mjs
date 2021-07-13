@@ -6,12 +6,22 @@ const carService = {
       console.log("..car service..");
       let response = await CarModel.findAll();
       if (response) {
-        return response;
-      } else return "FAIL";
+        return {
+          success: true,
+          data: response,
+        };
+      } else
+        return {
+          success: false,
+          message: "Internal server error",
+        };
     } catch (error) {
       console.log("..car service error..");
       console.log(error);
-      return "FAIL";
+      return {
+        success: false,
+        message: error.message,
+      };
     }
   },
 };

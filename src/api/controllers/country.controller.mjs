@@ -5,10 +5,10 @@ const countryController = {
     try {
       console.log("..country controller..");
       let response = await countryService.getAllCountryService();
-      if (response && response !== "FAIL") {
+      if (response?.success) {
         res.status(200).json({
           success: true,
-          data: response,
+          data: response.data,
         });
       } else {
         res.status(500).json({
