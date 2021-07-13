@@ -5,6 +5,9 @@ const parkingController = {
   getAvailableParkings: (req, res, next) => {
     console.log("parking slots controller");
   },
+  addParking:(req,res,next)=>{
+    
+  }
 };
 
 export default parkingController;

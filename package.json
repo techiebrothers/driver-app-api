@@ -5,7 +5,7 @@
   "main": "server.mjs",
   "scripts": {
     "dev": "nodemon -r dotenv/config server.mjs",
-    "kill":"sudo lsof -t -i tcp:9000 | xargs kill -9"
+    "kill": "sudo lsof -t -i tcp:9000 | xargs kill -9"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "module-alias": "^2.2.2",
     "moment": "^2.29.1",

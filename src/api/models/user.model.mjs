@@ -12,7 +12,7 @@ const User = DB.define(
     },
     name: {
       type: SQL.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     mobileNumber: {
       type: SQL.STRING,
@@ -21,11 +21,11 @@ const User = DB.define(
     },
     country: {
       type: SQL.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     city: {
       type: SQL.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
