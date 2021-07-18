@@ -10,11 +10,6 @@ router
 router
   .route("/get/available")
   .get(authMiddleware.isAuthenticated, parkingController.getAvailableParkings);
-router
-  .route("/add")
-  .post(
-    [authMiddleware.isAuthenticated, parkingMiddleware.validateAddParking],
-    parkingController.addParking
-  );
+
 
 export default router;

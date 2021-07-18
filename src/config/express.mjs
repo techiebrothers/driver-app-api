@@ -10,6 +10,7 @@ import DB from "../api/models/index.mjs";
 import swaggerJSDoc from "swagger-jsdoc";
 import { swaggerDocument } from "../../globalExports.mjs";
 import swaggerUI from "swagger-ui-express";
+import multer from "multer";
 const app = express();
 
 const swaggerOptions = {
@@ -30,12 +31,23 @@ app.get("/swagger.json", (req, res) => {
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, Content-Length, X-Requested-With"
+  );
+  res.header("Access-Control-Allow-Methods", "PUT, POST, GET, OPTIONS, DELETE");
+  next();
+});
+
 //request logging
 app.use(morgan("dev"));
 
 // parse body params and attach them to the req.body
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 //gzip compression
 app.use(compress());

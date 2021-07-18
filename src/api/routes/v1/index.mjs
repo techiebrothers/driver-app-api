@@ -7,6 +7,7 @@ import membershipRoutes from './membership.routes.mjs'
 // admin routes
 import adminUserRoutes from './admin-routes/user.routes.mjs'
 import adminMembershipRoutes from './admin-routes/membership.routes.mjs'
+import adminParkingRoutes from './admin-routes/parking.routes.mjs'
 
 const router = express.Router();
 router.use("/user", authRoutes);
@@ -17,6 +18,7 @@ router.use("/membership",membershipRoutes)
 // admin routes
 router.use("/admin/user",adminUserRoutes)
 router.use("/admin/membership",adminMembershipRoutes)
+router.use("/admin/parking",adminParkingRoutes)
 
 
 export default router;
