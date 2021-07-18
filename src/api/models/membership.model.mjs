@@ -15,16 +15,25 @@ const Membership = DB.define(
       allowNull: false,
     },
     basePrice:{
-      type: SQL.NUMBER,
+      type: SQL.FLOAT,
       allowNull: false,
     },
     tax:{
-      type: SQL.NUMBER,
+      type: SQL.FLOAT,
       allowNull: true,
     },
     discount:{
-      type: SQL.NUMBER,
+      type: SQL.FLOAT,
       allowNull: true,
+    },
+    expiryMonths:{
+      type: SQL.INTEGER,
+      allowNull: false,
+    },
+    isActive:{
+      type:SQL.BOOLEAN,
+      allowNull:false,
+      default:true
     }
   },
   {
