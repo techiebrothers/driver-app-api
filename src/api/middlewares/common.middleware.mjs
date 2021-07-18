@@ -1,10 +1,11 @@
 import jwt from "jsonwebtoken";
 import ENV from "../../config/env.mjs";
 import UserModel from "../models/user.model.mjs";
+import AdminUserModel from "../models/admin.user.model.mjs"
 
 const commonMiddleware = {
   validateRequest: (req, res, next, schema) => {
-    console.log('.. validate request middleware..')
+    console.log(".. validate request middleware..");
     const options = {
       abortEarly: false, // include all errors
       allowUnknown: true, // ignore unknown props
@@ -20,8 +21,8 @@ const commonMiddleware = {
     req.body = value;
     next();
   },
-  validateToken: (req, res, next) => {
-    console.log('.. validate token middleware..')
+  validateToken: (req, res, next, uid, role = "user") => {
+    console.log(".. validate token middleware..");
     let token = req.headers["authorization"];
     if (!token) {
       return res.status(403).json({
@@ -46,9 +47,18 @@ const commonMiddleware = {
         });
       }
       if (response) {
-        let actualUser = await UserModel.findOne({
-          where: { mobileNumber: response.uid },
-        });
+        let actualUser
+        if(role === 'user'){
+           actualUser = await UserModel.findOne({
+            where: { [uid]: response.uid },
+          });
+        }
+        else if (role === 'admin'){
+          actualUser = await AdminUserModel.findOne({
+            where: { [uid]: response.uid },
+          });
+        }
+        
         if (actualUser) {
           req.user = actualUser;
           next();

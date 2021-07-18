@@ -4,7 +4,7 @@ import commonMiddleware from "./common.middleware.mjs";
 const authMiddleware = {
   isAuthenticated: (req, res, next) => {
     console.log("..validate authentication middleware..");
-    commonMiddleware.validateToken(req, res, next);
+    commonMiddleware.validateToken(req, res, next, "mobileNumber", "user");
   },
   validateLogin: (req, res, next) => {
     console.log("..validate login middleware..");

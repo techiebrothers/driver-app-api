@@ -27,6 +27,11 @@ const User = DB.define(
       type: SQL.STRING,
       allowNull: true,
     },
+    isActive:{
+      type:SQL.BOOLEAN,
+      allowNull:false,
+      default:true
+    }
   },
   {
     freezeTableName: true,

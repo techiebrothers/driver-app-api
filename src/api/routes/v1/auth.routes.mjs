@@ -6,15 +6,24 @@ const router = express.Router();
 
 router
   .route("/update")
-  .post([authMiddleware.validateUpdateUser,authMiddleware.isAuthenticated], authController.updateUser);
+  .post(
+    [authMiddleware.validateUpdateUser, authMiddleware.isAuthenticated],
+    authController.updateUser
+  );
 
-router.route("/otp/send")
-.post(authMiddleware.validateSendOTP,authController.sendOTP)
+router
+  .route("/otp/send")
+  .post(authMiddleware.validateSendOTP, authController.sendOTP);
 
-router.route("/otp/verify")
-.post(authMiddleware.validateVerifyOTP,authController.verifyOTP)
+router
+  .route("/otp/verify")
+  .post(authMiddleware.validateVerifyOTP, authController.verifyOTP);
 
-router.route("/token/renew")
-.post(authMiddleware.validateRenewAccessToken,authController.renewAccessToken)
+router
+  .route("/token/renew")
+  .post(
+    authMiddleware.validateRenewAccessToken,
+    authController.renewAccessToken
+  );
 
 export default router;

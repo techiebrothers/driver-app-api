@@ -1,6 +1,7 @@
 import UserModel from "../models/user.model.mjs";
 import jwt from "jsonwebtoken";
 import ENV from "../../config/env.mjs";
+import commonService from './common.service.mjs'
 
 const authService = {
   verifyOTPService: async (req) => {
@@ -15,47 +16,29 @@ const authService = {
       return authService.createUserService(mobileNumber);
     } else {
       // verify and login user
-      const{accessToken,refreshToken} = await authService.createToken(mobileNumber)
-      return{
-        success:true,
-        data:{
+      const { accessToken, refreshToken } = await commonService.createToken(
+        mobileNumber
+      );
+      return {
+        success: true,
+        data: {
           ...user.dataValues,
           accessToken,
-          refreshToken
-        }
-      }
+          refreshToken,
+        },
+      };
     }
   },
-  createToken: async (mobileNumber) => {
-    console.log("..create token service..");
-    return new Promise((resolve,reject)=>{
-      try{
-        const accessToken = jwt.sign({ uid: mobileNumber }, ENV.JWT_ACCESS_KEY, {
-          expiresIn: ENV.JWT_ACCESS_KEY_EXPIRY,
-          algorithm: "HS256",
-        });
-        const refreshToken = jwt.sign({ uid: mobileNumber }, ENV.JWT_REFRESH_KEY, {
-          expiresIn: ENV.JWT_REFRESH_KEY_EXPIRY,
-          algorithm: "HS256",
-        });
-        resolve({
-          accessToken,
-          refreshToken,
-        })
-      }
-      catch(error){
-        reject(error)
-      }
-    })
-   
-  },
+  
   createUserService: async (mobileNumber) => {
     try {
       console.log("..create user service..");
-      const { accessToken, refreshToken } =
-        await authService.createToken(mobileNumber);
+      const { accessToken, refreshToken } = await commonService.createToken(
+        mobileNumber
+      );
       let response = await UserModel.create({
         mobileNumber,
+        isActive:true
       });
       if (response) {
         return {
@@ -78,98 +61,43 @@ const authService = {
   },
   updateUserService: async (data) => {
     console.log("..update user service..");
-    const { name, country, city,mobileNumber } = data;
-    try{
+    const { name, country, city, mobileNumber } = data;
+    try {
       let user = await UserModel.findOne({
-        where:{mobileNumber:mobileNumber}
-      })
-      if(user){
+        where: { mobileNumber: mobileNumber },
+      });
+      if (user) {
         let updatedUser = await user.update({
-          name,country,city
-        })
-        if(updatedUser){
-          return{
-            success:true,
-            message:"User information updated"
-          }
-        }
-        else{
-          return{
-            success:false,
-            error:"Error while updating user information"
-          }
-        }
-      }
-      else{
-        return{
-          success:false,
-          error:"User not found"
-        }
-      }
-    }
-    catch(error){
-      console.log("..update user service error..");
-      console.log(error.message)
-      return{
-        success:false,
-        error:error.message
-      }
-    }
-  },
-  renewAccessTokenService: async (req) => {
-    const { token } = req.body;
-    if (!token) {
-      return {
-        success: false,
-        error: "Invalid token",
-      };
-    }
-
-    return jwt.verify(token, ENV.JWT_REFRESH_KEY, async (err, response) => {
-      if (err) {
-        return {
-          success: false,
-          error: "Invalid token",
-        };
-      }
-      if (response?.uid) {
-        console.log(response.uid);
-        let user = await UserModel.findOne({
-          where: { mobileNumber: response.uid },
+          name,
+          country,
+          city,
         });
-        if (user) {
-          const accessToken = jwt.sign(
-            { uid: response.uid },
-            ENV.JWT_ACCESS_KEY,
-            {
-              expiresIn: "1d",
-            }
-          );
-          const refreshToken = jwt.sign(
-            { uid: response.uid },
-            ENV.JWT_REFRESH_KEY,
-            {
-              expiresIn: "1d",
-            }
-          );
+        if (updatedUser) {
           return {
             success: true,
-            accessToken,
-            refreshToken,
+            message: "User information updated",
+          };
+        } else {
+          return {
+            success: false,
+            error: "Error while updating user information",
           };
         }
-
+      } else {
         return {
           success: false,
-          error: "Invalid token",
+          error: "User not found",
         };
       }
-
+    } catch (error) {
+      console.log("..update user service error..");
+      console.log(error.message);
       return {
         success: false,
-        error: "Invalid token",
+        error: error.message,
       };
-    });
+    }
   },
+  
 };
 export default authService;
