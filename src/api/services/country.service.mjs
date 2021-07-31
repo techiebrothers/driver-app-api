@@ -5,8 +5,16 @@ const countryService = {
     try {
       console.log("..country service ..");
       let response = await CountryModel.findAll();
-      if (response) return { success: true, data: response };
-      else return { success: false, message: "Internal server error" };
+      if (response) {
+        let modifiedData = [];
+        Object.keys(response[0].dataValues.data).map((item, _) => {
+          modifiedData.push({
+            country: item,
+            state: [...response[0].dataValues.data[item]],
+          });
+        });
+        return { success: true, data: modifiedData };
+      } else return { success: false, message: "Internal server error" };
     } catch (error) {
       console.log("..country service error..");
       console.log(error.message);
