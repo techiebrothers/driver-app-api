@@ -11,5 +11,4 @@ router
   .route("/get/available")
   .get(authMiddleware.isAuthenticated, parkingController.getAvailableParkings);
 
-
 export default router;
