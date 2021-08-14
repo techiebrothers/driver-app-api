@@ -5,6 +5,6 @@ const router = express.Router();
 
 router
   .route("/get/all")
-  .get(authMiddleware.isAuthenticated, countryController.getAllCountry);
+  .get(countryController.getAllCountry);
 
 export default router;

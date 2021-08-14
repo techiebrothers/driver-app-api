@@ -5,6 +5,6 @@ const router = express.Router();
 
 router
   .route("/get/all")
-  .get(authMiddleware.isAuthenticated, carController.getAllCars);
+  .get(carController.getAllCars);
 
 export default router;
