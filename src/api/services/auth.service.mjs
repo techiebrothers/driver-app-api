@@ -80,13 +80,13 @@ const authService = {
         } else {
           return {
             success: false,
-            error: "Error while updating user information",
+            message: "Error while updating user information",
           };
         }
       } else {
         return {
           success: false,
-          error: "User not found",
+          message: "User not found",
         };
       }
     } catch (error) {
@@ -94,7 +94,7 @@ const authService = {
       console.log(error.message);
       return {
         success: false,
-        error: error.message,
+        message: error.message,
       };
     }
   },

@@ -29,7 +29,7 @@ const authController = {
       console.log(error);
       res.status(500).json({
         success: false,
-        error: "Internal server error",
+        message: "Internal server error, please try again",
       });
     }
   },
@@ -46,7 +46,7 @@ const authController = {
       console.log(error);
       res.status(500).json({
         success: false,
-        error: "Error while sending otp, please try again",
+        message: "Error while sending otp, please try again",
       });
     }
   },
@@ -69,7 +69,7 @@ const authController = {
       console.log(error);
       res.status(500).json({
         success: false,
-        error: "Error while verifying otp, please try again",
+        message: "Error while verifying otp, please try again",
       });
     }
   },
@@ -87,7 +87,7 @@ const authController = {
       } else {
         res.status(403).json({
           success: false,
-          error: "Invalid token",
+          message: "Invalid token",
         });
       }
     } catch (error) {
@@ -95,7 +95,7 @@ const authController = {
       console.log(error.message);
       res.status(500).json({
         success: false,
-        error: error.message,
+        message: error.message,
       });
     }
   },

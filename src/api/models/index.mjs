@@ -1,11 +1,11 @@
 import "dotenv/config"
-import SQL from "sequelize";
+import Sequelize from "sequelize";
 import { dbConfig } from "../../../globalExports.mjs";
 const ENV = process.env.NODE_ENV || "dev";
 // const ENV = 'test'
 const params = dbConfig[ENV];
 const connectionString = `postgres://${params.username}:${params.password}@${params.host}:${params.port}/${params.database}`
-const DB = new SQL(connectionString, {
+const DB = new Sequelize(connectionString, {
   define: {
     timestamps: true,
   },
@@ -16,4 +16,5 @@ const DB = new SQL(connectionString, {
   },
   logging: false,
 });
+
 export default DB;

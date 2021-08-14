@@ -12,7 +12,7 @@ const carController = {
       } else {
         res.status(500).json({
           success: false,
-          error: "Error while fetching cars list",
+          message: "Error while fetching cars list",
         });
       }
     } catch (error) {
@@ -20,7 +20,7 @@ const carController = {
       console.log(error);
       res.status(500).json({
         success: false,
-        error: "Error while fetching cars list",
+        message: "Error while fetching cars list",
       });
     }
   },

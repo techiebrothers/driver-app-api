@@ -27,14 +27,14 @@ const commonMiddleware = {
     if (!token) {
       return res.status(403).json({
         success: false,
-        error: "Invalid token",
+        message: "Invalid token",
       });
     }
 
     if (!token || token.length === 0) {
       return res.status(403).json({
         success: false,
-        error: "Invalid token",
+        message: "Invalid token",
       });
     }
     token = token && token.split(" ");
@@ -43,7 +43,7 @@ const commonMiddleware = {
       if (err) {
         return res.status(403).json({
           success: false,
-          error: "Invalid token",
+          message: "Invalid token",
         });
       }
       if (response) {
@@ -65,7 +65,7 @@ const commonMiddleware = {
         } else {
           return res.status(403).json({
             success: false,
-            error: "Invalid token",
+            message: "Invalid token",
           });
         }
       }

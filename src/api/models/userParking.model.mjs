@@ -22,6 +22,14 @@ const UserParking = DB.define(
       type: SQL.DATE,
       allowNull: false,
     },
+    pullout_date: {
+      type: SQL.DATE,
+      allowNull: false,
+    },
+    reminder_date:{
+      type: SQL.DATE,
+      allowNull: true,
+    }
   },
   {
     freezeTableName: true,

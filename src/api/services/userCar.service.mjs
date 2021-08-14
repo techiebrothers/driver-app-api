@@ -40,7 +40,6 @@ const userCarService = {
       return {
         success: false,
         message:"Internal server error, please try again",
-        error: error.message,
       };
     }
   },

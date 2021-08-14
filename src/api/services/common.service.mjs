@@ -30,7 +30,7 @@ const commonService = {
     if (!token) {
       return {
         success: false,
-        error: "Invalid token",
+        message: "Invalid token",
       };
     }
 
@@ -38,7 +38,7 @@ const commonService = {
       if (err) {
         return {
           success: false,
-          error: "Invalid token",
+          message: "Invalid token",
         };
       }
       if (response?.uid) {
@@ -77,13 +77,13 @@ const commonService = {
 
         return {
           success: false,
-          error: "Invalid token",
+          message: "Invalid token",
         };
       }
 
       return {
         success: false,
-        error: "Invalid token",
+        message: "Invalid token",
       };
     });
   },

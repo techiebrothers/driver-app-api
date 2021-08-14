@@ -12,11 +12,11 @@ const Parking = DB.define(
     },
     name:{
       type: SQL.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     address: {
       type: SQL.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     latitude:{
       type: SQL.STRING,
@@ -30,6 +30,10 @@ const Parking = DB.define(
       type:SQL.BOOLEAN,
       allowNull:false,
       default:true
+    },
+    status_id:{
+      type:SQL.INTEGER,
+      allowNull:true,
     },
     image:{
       type:SQL.STRING,

@@ -13,7 +13,7 @@ const countryController = {
       } else {
         res.status(500).json({
           success: false,
-          error: "Error while fetching countries",
+          message: "Error while fetching countries",
         });
       }
     } catch (error) {
@@ -21,7 +21,7 @@ const countryController = {
       console.log(error);
       res.status(500).json({
         success: false,
-        error: "Error while fetching countries",
+        message: "Error while fetching countries",
       });
     }
   },

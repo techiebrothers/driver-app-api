@@ -3,7 +3,7 @@ import commonMiddleware from "./common.middleware.mjs";
 
 const parkingMiddleware = {
   validateAddParking: (req, res, next) => {
-    console.log("..validate signup middleware..");
+    console.log("..validate add admin parking middleware..");
     const schema = Joi.object({
       address: Joi.string().required(),
       latitude: Joi.string().required(),
