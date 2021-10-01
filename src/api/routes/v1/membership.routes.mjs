@@ -7,4 +7,11 @@ router
   .route("/get/all")
   .get(authMiddleware.isAuthenticated, membershipController.getAllMembership);
 
+router
+  .route("/create/payment-intent")
+  .get(
+    authMiddleware.isAuthenticated,
+    membershipController.createPaymentIntent
+  );
+
 export default router;
